@@ -12,3 +12,7 @@ class Genome:
 
     def __repr__(self):
         return "<Genome (%i bases)>" % len(self._sequence)
+
+
+    def sequence(self):
+        return self._sequence

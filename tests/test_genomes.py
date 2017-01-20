@@ -26,3 +26,11 @@ class GenomeCreationTests(TestCase):
     def test_genome_repr(self):
         genome = Genome("GCATCGTATACAGCAGTACGT")
         self.assertEqual(str(genome), "<Genome (21 bases)>")
+
+
+
+class GenomePropertyTests(TestCase):
+
+    def test_basic_properties(self):
+        genome = Genome("GCATCGTATACAGCAGTACGT")
+        self.assertIs(genome.sequence(), genome._sequence)
