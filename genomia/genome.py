@@ -8,3 +8,7 @@ class Genome:
             if char not in ("A", "T", "G", "C"):
                 raise ValueError("%s is not a valid base" % char)
         self._sequence = sequence
+
+
+    def __repr__(self):
+        return "<Genome (%i bases)>" % len(self._sequence)

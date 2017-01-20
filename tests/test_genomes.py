@@ -21,3 +21,8 @@ class GenomeCreationTests(TestCase):
     def test_only_valid_bases_allowed(self):
         with self.assertRaises(ValueError):
             Genome("GCATCGTATACAGCAGTACGTP")
+
+
+    def test_genome_repr(self):
+        genome = Genome("GCATCGTATACAGCAGTACGT")
+        self.assertEqual(str(genome), "<Genome (21 bases)>")
