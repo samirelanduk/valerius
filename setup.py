@@ -1,10 +1,10 @@
 from setuptools import setup
 
 setup(
- name="genomia",
+ name="valerius",
  version="0.1.0",
- description="Genome analysis tools.",
- url="https://github.com/samirelanduk/genomia",
+ description="Biological sequence analysis tools.",
+ url="https://github.com/samirelanduk/valerius",
  author="Sam Ireland",
  author_email="mail@samireland.com",
  license="MIT",

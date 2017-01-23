@@ -1,5 +1,5 @@
 from unittest import TestCase
-from genomia.genome import Genome
+from valerius.genome import Genome
 
 class GenomeCreationTests(TestCase):
 
