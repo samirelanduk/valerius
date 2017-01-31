@@ -12,3 +12,10 @@ class BioSequence:
 
     def sequence(self):
         return self._sequence
+
+
+
+class DnaSequence(BioSequence):
+
+    def __init__(self, *args, **kwargs):
+        BioSequence.__init__(self, *args, **kwargs)
