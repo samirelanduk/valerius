@@ -1,3 +1,4 @@
+import re
 class BioSequence:
 
     def __init__(self, sequence):
@@ -17,5 +18,9 @@ class BioSequence:
 
 class DnaSequence(BioSequence):
 
-    def __init__(self, *args, **kwargs):
-        BioSequence.__init__(self, *args, **kwargs)
+    def __init__(self, sequence, *args, **kwargs):
+        BioSequence.__init__(self, sequence, *args, **kwargs)
+        pattern = re.compile("^[GCAT]+$")
+        if not pattern.match(sequence):
+            bad_base = sequence[re.search(r'[^AGCT]', sequence).start()]
+            raise ValueError("'%s' is not a valid DNA base" % bad_base)
