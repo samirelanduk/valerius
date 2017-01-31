@@ -4,8 +4,8 @@ from valerius.sequence import BioSequence
 class BioSequencereationTests(TestCase):
 
     def test_can_create_biosequence(self):
-        sequence = BioSequence("GCATCGTATACAGCAGTACGT")
-        self.assertEqual(sequence._sequence, "GCATCGTATACAGCAGTACGT")
+        sequence = BioSequence("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        self.assertEqual(sequence._sequence, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
     def test_need_sequence(self):
@@ -19,13 +19,13 @@ class BioSequencereationTests(TestCase):
 
 
     def test_sequence_repr(self):
-        sequence = BioSequence("GCATCGTATACAGCAGTACGT")
-        self.assertEqual(str(sequence), "<BioSequence (21 bases)>")
+        sequence = BioSequence("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        self.assertEqual(str(sequence), "<BioSequence (26 bases)>")
 
 
 
 class BioSequencePropertyTests(TestCase):
 
     def test_basic_properties(self):
-        sequence = BioSequence("GCATCGTATACAGCAGTACGT")
+        sequence = BioSequence("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         self.assertIs(sequence.sequence(), sequence._sequence)
