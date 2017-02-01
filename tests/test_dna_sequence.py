@@ -27,3 +27,29 @@ class DnaSequenceCreationTests(TestCase):
         with self.assertRaises(ValueError) as context:
             DnaSequence("GCATCGTATZACAGCAGTACGW")
         self.assertIn("'Z'", str(context.exception))
+
+
+
+class GcContentTests(TestCase):
+
+    def test_all_gc_is_1(self):
+        sequence = DnaSequence("GGGGG")
+        self.assertEqual(sequence.gc_content(), 1)
+        sequence = DnaSequence("CCCCC")
+        self.assertEqual(sequence.gc_content(), 1)
+        sequence = DnaSequence("GCGCG")
+        self.assertEqual(sequence.gc_content(), 1)
+
+
+    def test_no_gc_is_0(self):
+        sequence = DnaSequence("ATATAT")
+        self.assertEqual(sequence.gc_content(), 0)
+
+
+    def test_mixed_gc_content(self):
+        sequence = DnaSequence("GA")
+        self.assertEqual(sequence.gc_content(), 0.5)
+        sequence = DnaSequence("GATT")
+        self.assertEqual(sequence.gc_content(), 0.25)
+        sequence = DnaSequence("GATTCCGCCGGG")
+        self.assertEqual(sequence.gc_content(), 0.75)

@@ -24,3 +24,9 @@ class DnaSequence(BioSequence):
         if not pattern.match(sequence):
             bad_base = sequence[re.search(r'[^AGCT]', sequence).start()]
             raise ValueError("'%s' is not a valid DNA base" % bad_base)
+
+
+    def gc_content(self):
+        return len(
+         [base for base in self.sequence() if base == "G" or base == "C"]
+        ) / len(self.sequence())
