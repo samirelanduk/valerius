@@ -29,6 +29,11 @@ class DnaSequenceCreationTests(TestCase):
         self.assertIn("'Z'", str(context.exception))
 
 
+    def test_dna_sequence_repr(self):
+        sequence = DnaSequence("GCATCGTATACAGCAGTACGT")
+        self.assertEqual(str(sequence), "<DnaSequence (21 bases)>")
+
+
 
 class GcContentTests(TestCase):
 

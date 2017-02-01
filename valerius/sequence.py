@@ -8,7 +8,7 @@ class BioSequence:
 
 
     def __repr__(self):
-        return "<BioSequence (%i bases)>" % len(self._sequence)
+        return "<%s (%i bases)>" % (self.__class__.__name__, len(self._sequence))
 
 
     def sequence(self):
