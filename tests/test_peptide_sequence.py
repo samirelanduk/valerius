@@ -13,3 +13,8 @@ class PeptideSequenceCreationTests(TestCase):
     def test_peptide_sequence_uses_biosequence_initialisation(self, mock):
         sequence = PeptideSequence("MGDVLEQFFILTGLLV")
         self.assertTrue(mock.called)
+
+
+    def test_peptide_sequence_repr(self):
+        sequence = PeptideSequence("MGDVLEQFFILTGLLV")
+        self.assertEqual(str(sequence), "<PeptideSequence (16 bases)>")
