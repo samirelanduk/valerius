@@ -30,3 +30,10 @@ class DnaSequence(BioSequence):
         return len(
          [base for base in self.sequence() if base == "G" or base == "C"]
         ) / len(self.sequence())
+
+
+
+class PeptideSequence(BioSequence):
+
+    def __init__(self, sequence, *args, **kwargs):
+        BioSequence.__init__(self, sequence, *args, **kwargs)
