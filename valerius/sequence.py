@@ -37,3 +37,9 @@ class PeptideSequence(BioSequence):
 
     def __init__(self, sequence, *args, **kwargs):
         BioSequence.__init__(self, sequence, *args, **kwargs)
+        pattern = re.compile("^[GALMFWKQESPVICYHRNDT]+$")
+        if not pattern.match(sequence):
+            bad_peptide = sequence[
+             re.search(r'[^GALMFWKQESPVICYHRNDT]', sequence).start()
+            ]
+            raise ValueError("'%s' is not a valid peptide residue" % bad_peptide)
