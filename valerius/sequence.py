@@ -1,4 +1,5 @@
 import re
+
 class BioSequence:
 
     def __init__(self, sequence):
@@ -20,16 +21,15 @@ class DnaSequence(BioSequence):
 
     def __init__(self, sequence, *args, **kwargs):
         BioSequence.__init__(self, sequence, *args, **kwargs)
-        pattern = re.compile("^[GCAT]+$")
+        pattern = re.compile(r"^[GCAT]+$")
         if not pattern.match(sequence):
-            bad_base = sequence[re.search(r'[^AGCT]', sequence).start()]
+            bad_base = sequence[re.search(r"[^AGCT]", sequence).start()]
             raise ValueError("'%s' is not a valid DNA base" % bad_base)
 
 
     def gc_content(self):
-        return len(
-         [base for base in self.sequence() if base == "G" or base == "C"]
-        ) / len(self.sequence())
+        gc_bases = self.sequence().count("G") + self.sequence().count("C")
+        return gc_bases / len(self.sequence())
 
 
 
@@ -40,6 +40,6 @@ class PeptideSequence(BioSequence):
         pattern = re.compile("^[GALMFWKQESPVICYHRNDT]+$")
         if not pattern.match(sequence):
             bad_peptide = sequence[
-             re.search(r'[^GALMFWKQESPVICYHRNDT]', sequence).start()
+             re.search(r"[^GALMFWKQESPVICYHRNDT]", sequence).start()
             ]
             raise ValueError("'%s' is not a valid peptide residue" % bad_peptide)
