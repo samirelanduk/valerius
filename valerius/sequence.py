@@ -17,19 +17,26 @@ class BioSequence:
 
 
 
-class DnaSequence(BioSequence):
+class NucleotideSequence(BioSequence):
 
-    def __init__(self, sequence, *args, **kwargs):
-        BioSequence.__init__(self, sequence, *args, **kwargs)
-        pattern = re.compile(r"^[GCAT]+$")
-        if not pattern.match(sequence):
-            bad_base = sequence[re.search(r"[^AGCT]", sequence).start()]
-            raise ValueError("'%s' is not a valid DNA base" % bad_base)
+    def __init__(self, *args, **kwargs):
+        BioSequence.__init__(self, *args, **kwargs)
 
 
     def gc_content(self):
         gc_bases = self.sequence().count("G") + self.sequence().count("C")
         return gc_bases / len(self.sequence())
+
+
+
+class DnaSequence(NucleotideSequence):
+
+    def __init__(self, sequence, *args, **kwargs):
+        NucleotideSequence.__init__(self, sequence, *args, **kwargs)
+        pattern = re.compile(r"^[GCAT]+$")
+        if not pattern.match(sequence):
+            bad_base = sequence[re.search(r"[^AGCT]", sequence).start()]
+            raise ValueError("'%s' is not a valid DNA base" % bad_base)
 
 
 
