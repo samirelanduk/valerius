@@ -40,6 +40,17 @@ class DnaSequence(NucleotideSequence):
 
 
 
+class RnaSequence(NucleotideSequence):
+
+    def __init__(self, sequence, *args, **kwargs):
+        NucleotideSequence.__init__(self, sequence, *args, **kwargs)
+        pattern = re.compile(r"^[GCAU]+$")
+        if not pattern.match(sequence):
+            bad_base = sequence[re.search(r"[^AGCU]", sequence).start()]
+            raise ValueError("'%s' is not a valid RNA base" % bad_base)
+
+
+
 class PeptideSequence(BioSequence):
 
     def __init__(self, sequence, *args, **kwargs):
