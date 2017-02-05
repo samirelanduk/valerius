@@ -3,3 +3,4 @@
 
 .. automodule:: valerius.sequence
     :members:
+    :inherited-members:
