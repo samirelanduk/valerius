@@ -2,9 +2,9 @@ from setuptools import setup
 
 setup(
  name="valerius",
- version="0.1.0",
+ version="0.2.0",
  description="Biological sequence analysis tools.",
- url="https://github.com/samirelanduk/valerius",
+ url="https://valerius.samireland.com",
  author="Sam Ireland",
  author_email="mail@samireland.com",
  license="MIT",
@@ -14,12 +14,9 @@ setup(
   "License :: OSI Approved :: MIT License",
   "Topic :: Scientific/Engineering :: Bio-Informatics",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.0",
-  "Programming Language :: Python :: 3.1",
-  "Programming Language :: Python :: 3.2",
-  "Programming Language :: Python :: 3.3",
-  "Programming Language :: Python :: 3.4",
   "Programming Language :: Python :: 3.5",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
  ],
  keywords="biology bioinformatics genomes sequence",
  install_requires=["requests"]
