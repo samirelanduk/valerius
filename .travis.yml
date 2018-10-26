@@ -11,7 +11,7 @@ matrix:
 
 install:
     - 'pip install pipenv'
-    - 'pipenv sync'
+    - 'pipenv sync --dev'
 
 script:
     - coverage run --source=atomium -m unittest discover tests
