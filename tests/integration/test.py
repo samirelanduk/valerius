@@ -17,3 +17,7 @@ class Tests(TestCase):
         self.assertEqual(sequence[:5], "MKXPE")
         self.assertEqual(sequence[-5:], "EFPXL")
         self.assertEqual(sequence.string, "MKXPEELKGIFEKYAAKEGDPNQLSKEELKLLLQTEFPXL")
+        self.assertEqual(sequence.frequencies, {
+         "E": 7, "L": 7, "K": 6, "P": 3, "X": 2, "G": 2, "F": 2, "A": 2,
+         "Q": 2, "M": 1, "I": 1, "Y": 1, "D": 1, "N": 1, "S": 1, "T": 1
+        })

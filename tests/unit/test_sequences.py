@@ -115,3 +115,11 @@ class SequenceStringTests(TestCase):
     def test_can_get_string(self):
         s = Sequence("ABC")
         self.assertIs(s.string, s._string)
+
+
+
+class SequenceFrequenciesTests(TestCase):
+
+    def test_can_get_sequence_frequencies(self):
+        s = Sequence("ABCABCA")
+        self.assertEqual(s.frequencies, {"A": 3, "B": 2, "C": 2})

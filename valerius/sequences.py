@@ -1,6 +1,6 @@
 """Classes for the various kinds of Biological sequence."""
 
-import re
+from collections import Counter
 
 class Sequence:
     """A string sequence of some kind.
@@ -71,5 +71,14 @@ class Sequence:
         """The sequence's raw string.
 
         :rtype: ``str``"""
-        
+
         return self._string
+
+
+    @property
+    def frequencies(self):
+        """Returns the frequency of each character in the sequence.
+
+        :rtype: ``Counter``"""
+        
+        return Counter(self._string)
