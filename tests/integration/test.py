@@ -33,3 +33,8 @@ class Tests(TestCase):
         self.assertEqual(len(sequence), 300)
         self.assertEqual(sequence[:20], "MGDVLEQFFILTGLLVCLAC")
         self.assertEqual(sequence[-20:], "IPAWAFYSGAFQRLLLTHYV")
+
+        sequence = valerius.open("tests/integration/files/insulin.fasta")
+        self.assertEqual(len(sequence), 98)
+        self.assertEqual(sequence[:20], "MALWMRLLPLLALLALWGPD")
+        self.assertEqual(sequence[-20:], "IVEQCCTSICSLYQLENYCN")
