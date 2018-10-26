@@ -14,7 +14,7 @@ install:
     - 'pipenv sync --dev'
 
 script:
-    - coverage run --source=atomium -m unittest discover tests
+    - coverage run --source=valerius -m unittest discover tests
 
 after_success:
   - coveralls
