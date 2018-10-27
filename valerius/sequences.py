@@ -7,6 +7,8 @@ class Sequence:
 
     :param str string: the raw string."""
 
+    _CODES = {}
+
     def __init__(self, string):
         self._string = string
 
@@ -80,5 +82,62 @@ class Sequence:
         """Returns the frequency of each character in the sequence.
 
         :rtype: ``Counter``"""
-        
+
         return Counter(self._string)
+
+
+    @property
+    def codes(self):
+        """Returns the list of multi-letter codes corresponding to this
+        sequence.
+
+        :rtype: ``list``"""
+
+        return [self._CODES.get(char, "XXX") for char in self._string]
+
+
+
+class PeptideSequence(Sequence):
+    """A sequence of protein residues.
+
+    :param str string: the raw string."""
+
+    _CODES = {
+     "V": "VAL", "I": "ILE", "L": "LEU", "E": "GLU", "Q": "GLN",
+     "D": "ASP", "N": "ASN", "H": "HIS", "W": "TRP", "F": "PHE",
+     "Y": "TYR", "R": "ARG", "K": "LYS", "S": "SER", "T": "THR",
+     "M": "MET", "A": "ALA", "G": "GLY", "P": "PRO", "C": "CYS"
+    }
+
+
+
+class NucleotideSequence(Sequence):
+    """A sequence of nucleotide bases.
+
+    :param str string: the raw string."""
+
+    pass
+
+
+
+class DnaSequence(NucleotideSequence):
+    """A sequence of DNA nucleotide bases.
+
+    :param str string: the raw string."""
+
+
+    _CODES = {
+     "A": "DA", "C": "DC", "G": "DG", "T": "DT"
+    }
+
+
+
+class RnaSequence(NucleotideSequence):
+    """A sequence of RNA nucleotide bases.
+
+    :param str string: the raw string."""
+
+
+    _CODES = {
+     "A": "A", "C": "C", "G": "G", "U": "U"
+    }

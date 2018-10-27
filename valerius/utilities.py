@@ -1,7 +1,7 @@
 import builtins
 import re
 import requests
-from .sequences import Sequence
+from .sequences import Sequence, DnaSequence, RnaSequence, PeptideSequence
 
 def open(path):
     """Opens a sequence file and returns a processed :py:class:`.Sequence`.
@@ -15,6 +15,20 @@ def open(path):
         return string_to_sequence(f.read())
 
 
+def get_sequence_class(string):
+    """Looks at a string sequence and tries to guess what kind of sequence it is
+    before returning the appropriate class.
+
+    :param str string: the string sequence to inspect.
+    :rtype: ``class``"""
+    
+    if re.compile(r"^[GCAT]+$").match(string):
+        return DnaSequence
+    elif re.compile(r"^[GCAU]+$").match(string):
+        return RnaSequence
+    else:
+        return PeptideSequence
+
 
 def string_to_sequence(string):
     """Takes a filestring and turns it into a :py:class:`.Sequence`, parsing
@@ -27,7 +41,7 @@ def string_to_sequence(string):
     string = " ".join([
      line for line in lines if line.strip()
     ]).replace(" ", "")
-    return Sequence(string)
+    return get_sequence_class(string)(string)
 
 
 def is_fasta(filestring):
@@ -44,7 +58,7 @@ def fetch(accession):
 
     :param str accession: the UNIPROT accession ID.
     :rtype: ``Sequence``"""
-    
+
     response = requests.get(
      "https://www.uniprot.org/uniprot/{}.fasta".format(accession)
     )

@@ -19,26 +19,41 @@ class FileOpeningTests(TestCase):
 
 
 
+class SequenceClassGettingTests(TestCase):
+
+    def test_can_detect_dna(self):
+        self.assertIs(get_sequence_class("ACGTCGA"), DnaSequence)
+
+
+    def test_can_detect_rna(self):
+        self.assertIs(get_sequence_class("ACGUCGA"), RnaSequence)
+
+
+    def test_can_detect_protein(self):
+        self.assertIs(get_sequence_class("MFPYTVA"), PeptideSequence)
+
+
+
 class StringToSequenceTests(TestCase):
 
     @patch("valerius.utilities.is_fasta")
-    @patch("valerius.utilities.Sequence")
-    def test_can_process_text(self, mock_seq, mock_is):
+    @patch("valerius.utilities.get_sequence_class")
+    def test_can_process_text(self, mock_cls, mock_is):
         mock_is.return_value = False
         s = string_to_sequence("ABCD\nEF GH\n\n123")
         mock_is.assert_called_with("ABCD\nEF GH\n\n123")
-        mock_seq.assert_called_with("ABCDEFGH123")
-        self.assertIs(s, mock_seq.return_value)
+        mock_cls.return_value.assert_called_with("ABCDEFGH123")
+        self.assertIs(s, mock_cls.return_value.return_value)
 
 
     @patch("valerius.utilities.is_fasta")
-    @patch("valerius.utilities.Sequence")
-    def test_can_process_fasta_text(self, mock_seq, mock_is):
+    @patch("valerius.utilities.get_sequence_class")
+    def test_can_process_fasta_text(self, mock_cls, mock_is):
         mock_is.return_value = True
         s = string_to_sequence("ABCD\nEF GH\n\n123")
         mock_is.assert_called_with("ABCD\nEF GH\n\n123")
-        mock_seq.assert_called_with("EFGH123")
-        self.assertIs(s, mock_seq.return_value)
+        mock_cls.return_value.assert_called_with("EFGH123")
+        self.assertIs(s, mock_cls.return_value.return_value)
 
 
 

@@ -28,11 +28,13 @@ class Tests(TestCase):
         self.assertEqual(
          sequence, "CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC"
         )
+        self.assertEqual(sequence.codes[:5], ["DC", "DC", "DT", "DG", "DC"])
 
         sequence = valerius.open("tests/integration/files/sequence-lines.txt")
         self.assertEqual(len(sequence), 300)
         self.assertEqual(sequence[:20], "MGDVLEQFFILTGLLVCLAC")
         self.assertEqual(sequence[-20:], "IPAWAFYSGAFQRLLLTHYV")
+        self.assertEqual(sequence.codes[:4], ["MET", "GLY", "ASP", "VAL"])
 
         sequence = valerius.open("tests/integration/files/insulin.fasta")
         self.assertEqual(len(sequence), 98)
