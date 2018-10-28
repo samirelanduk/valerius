@@ -5,7 +5,7 @@ from valerius.utilities import *
 class FileOpeningTests(TestCase):
 
     @patch("builtins.open")
-    @patch("valerius.utilities.string_to_sequence")
+    @patch("valerius.utilities.from_string")
     def test_can_open_file(self, mock_seq, mock_open):
         open_return = MagicMock()
         mock_file = Mock()
@@ -40,7 +40,7 @@ class StringToSequenceTests(TestCase):
     @patch("valerius.utilities.get_sequence_class")
     def test_can_process_text(self, mock_cls, mock_is):
         mock_is.return_value = False
-        s = string_to_sequence("ABCD\nEF GH\n\n123")
+        s = from_string("ABCD\nEF GH\n\n123")
         mock_is.assert_called_with("ABCD\nEF GH\n\n123")
         mock_cls.return_value.assert_called_with("ABCDEFGH123")
         self.assertIs(s, mock_cls.return_value.return_value)
@@ -50,7 +50,7 @@ class StringToSequenceTests(TestCase):
     @patch("valerius.utilities.get_sequence_class")
     def test_can_process_fasta_text(self, mock_cls, mock_is):
         mock_is.return_value = True
-        s = string_to_sequence("ABCD\nEF GH\n\n123")
+        s = from_string("ABCD\nEF GH\n\n123")
         mock_is.assert_called_with("ABCD\nEF GH\n\n123")
         mock_cls.return_value.assert_called_with("EFGH123")
         self.assertIs(s, mock_cls.return_value.return_value)
@@ -73,7 +73,7 @@ class IsFastaTests(TestCase):
 class FetchingTests(TestCase):
 
     @patch("requests.get")
-    @patch("valerius.utilities.string_to_sequence")
+    @patch("valerius.utilities.from_string")
     def test_can_fetch_sequence_from_uniprot(self, mock_seq, mock_get):
         mock_get.return_value.status_code = 200
         mock_get.return_value.text = "1334"

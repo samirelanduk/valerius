@@ -12,7 +12,7 @@ def open(path):
     :rtype: ``Sequence``"""
 
     with builtins.open(path) as f:
-        return string_to_sequence(f.read())
+        return from_string(f.read())
 
 
 def get_sequence_class(string):
@@ -21,7 +21,7 @@ def get_sequence_class(string):
 
     :param str string: the string sequence to inspect.
     :rtype: ``class``"""
-    
+
     if re.compile(r"^[GCAT]+$").match(string):
         return DnaSequence
     elif re.compile(r"^[GCAU]+$").match(string):
@@ -30,7 +30,7 @@ def get_sequence_class(string):
         return PeptideSequence
 
 
-def string_to_sequence(string):
+def from_string(string):
     """Takes a filestring and turns it into a :py:class:`.Sequence`, parsing
     from FASTA if required.
 
@@ -63,4 +63,4 @@ def fetch(accession):
      "https://www.uniprot.org/uniprot/{}.fasta".format(accession)
     )
     if response.status_code == 200:
-        return string_to_sequence(response.text)
+        return from_string(response.text)

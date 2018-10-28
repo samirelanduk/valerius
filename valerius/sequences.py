@@ -8,6 +8,7 @@ class Sequence:
     :param str string: the raw string."""
 
     _CODES = {}
+    _type = "unknown"
 
     def __init__(self, string):
         self._string = string
@@ -60,6 +61,15 @@ class Sequence:
 
 
     @property
+    def type(self):
+        """The type of sequence.
+
+        :rtype: ``str``"""
+
+        return self._type
+
+
+    @property
     def length(self):
         """The length of the string.
 
@@ -108,6 +118,7 @@ class PeptideSequence(Sequence):
      "Y": "TYR", "R": "ARG", "K": "LYS", "S": "SER", "T": "THR",
      "M": "MET", "A": "ALA", "G": "GLY", "P": "PRO", "C": "CYS"
     }
+    _type = "peptide"
 
 
 
@@ -116,7 +127,7 @@ class NucleotideSequence(Sequence):
 
     :param str string: the raw string."""
 
-    pass
+    _type = "nucleotide"
 
 
 
@@ -129,6 +140,7 @@ class DnaSequence(NucleotideSequence):
     _CODES = {
      "A": "DA", "C": "DC", "G": "DG", "T": "DT"
     }
+    _type = "DNA"
 
 
 
@@ -141,3 +153,4 @@ class RnaSequence(NucleotideSequence):
     _CODES = {
      "A": "A", "C": "C", "G": "G", "U": "U"
     }
+    _type = "RNA"
