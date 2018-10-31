@@ -65,8 +65,6 @@ class IsFastaTests(TestCase):
 
     def test_can_reject_fasta(self):
         self.assertFalse(is_fasta("..|..\n..."))
-        self.assertFalse(is_fasta(">..|....."))
-        self.assertFalse(is_fasta(">....\n..."))
 
 
 
@@ -79,5 +77,17 @@ class FetchingTests(TestCase):
         mock_get.return_value.text = "1334"
         s = fetch("ABC")
         mock_get.assert_called_with("https://www.uniprot.org/uniprot/ABC.fasta")
+        mock_seq.assert_called_with("1334")
+        self.assertIs(s, mock_seq.return_value)
+
+
+    @patch("requests.get")
+    @patch("valerius.utilities.from_string")
+    def test_can_fetch_sequence_from_ncbi(self, mock_seq, mock_get):
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.text = "1334"
+        s = fetch("ABC", db="ncbi")
+        mock_get.assert_called_with("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+        "efetch.fcgi?db=nucleotide&id=ABC&rettype=fasta")
         mock_seq.assert_called_with("1334")
         self.assertIs(s, mock_seq.return_value)

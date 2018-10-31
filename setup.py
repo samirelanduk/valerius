@@ -19,5 +19,6 @@ setup(
   "Programming Language :: Python :: 3.7",
  ],
  keywords="biology bioinformatics genomes sequence",
+ packages=["valerius"],
  install_requires=["requests"]
 )

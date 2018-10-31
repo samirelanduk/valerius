@@ -50,17 +50,20 @@ def is_fasta(filestring):
     :param str filestring: the filestring to check.
     :rtype: ``bool``"""
 
-    return re.match(r"^>(.+?)\|(.+)\n", filestring)
+    return re.match(r"^>(.+?)\n", filestring)
 
 
-def fetch(accession):
+def fetch(accession, db="uniprot"):
     """Fetches a sequence from UNIPROT by accession code.
 
     :param str accession: the UNIPROT accession ID.
     :rtype: ``Sequence``"""
 
-    response = requests.get(
-     "https://www.uniprot.org/uniprot/{}.fasta".format(accession)
-    )
+    url = {
+     "uniprot": "https://www.uniprot.org/uniprot/{}.fasta",
+     "ncbi": "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+     "efetch.fcgi?db=nucleotide&id={}&rettype=fasta"
+    }
+    response = requests.get(url[db].format(accession))
     if response.status_code == 200:
         return from_string(response.text)
