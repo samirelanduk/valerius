@@ -1,9 +1,9 @@
 from unittest import TestCase
 import valerius
 
-class Tests(TestCase):
+class SequenceTests(TestCase):
 
-    def test(self):
+    def test_raw_sequence_making(self):
         sequence = valerius.Sequence("MKSPEELKGIFEKYAAKEGDPNQLSKEELKLLLQTEFPLL")
         self.assertEqual(len(sequence), 40)
         self.assertEqual(sequence.length, 40)
@@ -23,9 +23,18 @@ class Tests(TestCase):
          "Q": 2, "M": 1, "I": 1, "Y": 1, "D": 1, "N": 1, "S": 1, "T": 1
         })
 
+
+    def test_sequence_from_string(self):
         sequence = valerius.from_string("MKXPEELKGIFEKYAAKEGDPNQLSKEELKLLLQTEF")
         self.assertEqual(sequence.type, "peptide")
+        sequence = valerius.from_string("ACTAGAATAGCCAGAACCGTTTCTCTGAGGCTT")
+        self.assertEqual(sequence.type, "DNA")
+        sequence = valerius.from_string("ACUAGAAUAGCCAGAACCGUUUCUCUGAGGCUU")
+        self.assertEqual(sequence.type, "RNA")
 
+
+
+class SequenceOpeningTests(TestCase):
 
     def test_opening(self):
         sequence = valerius.open("tests/integration/files/sequence-line.txt")
