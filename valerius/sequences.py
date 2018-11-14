@@ -129,6 +129,16 @@ class NucleotideSequence(Sequence):
 
     _type = "nucleotide"
 
+    @property
+    def gc_content(self):
+        """Returns the proportion of G and C residues in the sequence.
+
+        :rtype: ``float``"""
+        
+        if len(self._string) == 0: return 0
+        gc_bases = self._string.count("G") + self._string.count("C")
+        return gc_bases / len(self._string)
+
 
 
 class DnaSequence(NucleotideSequence):

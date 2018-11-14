@@ -27,8 +27,9 @@ class SequenceTests(TestCase):
     def test_sequence_from_string(self):
         sequence = valerius.from_string("MKXPEELKGIFEKYAAKEGDPNQLSKEELKLLLQTEF")
         self.assertEqual(sequence.type, "peptide")
-        sequence = valerius.from_string("ACTAGAATAGCCAGAACCGTTTCTCTGAGGCTT")
+        sequence = valerius.from_string("ACTAGAATAGCCAGAACCGTTTCTCTGAGCTT")
         self.assertEqual(sequence.type, "DNA")
+        self.assertEqual(sequence.gc_content, 0.4375)
         sequence = valerius.from_string("ACUAGAAUAGCCAGAACCGUUUCUCUGAGGCUU")
         self.assertEqual(sequence.type, "RNA")
 
