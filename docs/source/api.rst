@@ -2,4 +2,6 @@ Full API
 --------
 
 .. toctree ::
-    api/sequence
+	api/sequences
+	api/utilities
+

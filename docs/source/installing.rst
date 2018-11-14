@@ -6,14 +6,26 @@ pip
 
 valerius can be installed using pip:
 
-``$ pip install valerius``
-
-valerius is written for Python 3. If the above installation fails, it may be
-that your system uses ``pip`` for the Python 2 version - if so, try:
-
 ``$ pip3 install valerius``
+
+valerius is written for Python 3, and does not support Python 2.
+
+If you get permission errors, try using ``sudo``:
+
+``$ sudo pip3 install valerius``
+
+
+Development
+~~~~~~~~~~~
+
+The repository for valerius, containing the most recent iteration, can be
+found `here <http://github.com/samirelanduk/valerius/>`_. To clone the
+valerius repository directly from there, use:
+
+``$ git clone git://github.com/samirelanduk/valerius.git``
+
 
 Requirements
 ~~~~~~~~~~~~
 
-valerius currently has no dependencies.
+valerius requires `requests <https://docs.python-requests.org/>`_.

@@ -7,9 +7,11 @@ sequences.
 Example
 -------
 
-  >>> from valerius.sequence import DnaSequence
-  >>> sequence = DnaSequence("TGACAATATATATATATATATAATGCTAGC")
-  >>> sequence.gc_content()
+  >>> import valerius
+  >>> sequence = valerius.from_string("TGACAATATATATATATATATAATGCTAGC")
+  >>> sequence.type
+  'DNA'
+  >>> sequence.gc_content
   0.2
 
 Table of Contents
@@ -19,4 +21,5 @@ Table of Contents
   installing
   overview
   api
+  contributing
   changelog

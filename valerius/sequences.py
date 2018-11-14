@@ -11,7 +11,7 @@ class Sequence:
     _type = "unknown"
 
     def __init__(self, string):
-        self._string = string
+        self._string = string.upper()
 
 
     def __repr__(self):
@@ -134,7 +134,7 @@ class NucleotideSequence(Sequence):
         """Returns the proportion of G and C residues in the sequence.
 
         :rtype: ``float``"""
-        
+
         if len(self._string) == 0: return 0
         gc_bases = self._string.count("G") + self._string.count("C")
         return gc_bases / len(self._string)

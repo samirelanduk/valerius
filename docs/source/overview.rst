@@ -1,28 +1,44 @@
 Overview
 --------
 
-Biological Sequences
-~~~~~~~~~~~~~~~~~~~~
+From String
+~~~~~~~~~~~
 
-All sequences are ultimately instances of :py:class:`.BioSequence`.
+A sequence can be made from a string using:
 
-Nucleotide Sequences
-~~~~~~~~~~~~~~~~~~~~
+    >>> import valerius
+    >>> sequence1 = valerius.from_string("MALWMRLLPL")
+    >>> sequence2 = valerius.from_string("ggttgaactactcat")
 
-Nucleotide sequences - :py:class:`.NucleotideSequence` - hold genetic
-information.
+valerius will automatically detect which sequence type it is, and will return a
+:py:class:`.PeptideSequence` for example, or :py:class:`.RnaSequence` as
+required.
 
-Generally, you would use one of its subclasses, :py:class:`.DnaSequence` or
-:py:class:`.RnaSequence`. In any case, all nucleotides have a GC content
-measure:
+Basic properties can be queried:
 
-  >>> from valerius.sequence import DnaSequence
-  >>> sequence = DnaSequence("TGACAATATATATATATATATAATGCTAGC")
-  >>> sequence.gc_content()
-  0.2
+    >>> "LLP" in sequence1
+    True
+    >>> sequence1.type
+    'peptide'
+    >>> sequence.length
+    10
+    >>> sequence2.frequencies
+    Counter({'T': 5, 'A': 4, 'G': 3, 'C': 3})
+    >>> sequence1.codes
+    ['MET', 'ALA', 'LEU', 'TRP', 'MET', 'ARG', 'LEU', 'LEU', 'PRO', 'LEU']
+    >>> sequence2.gc_content
+    0.4
 
-Peptide Sequences
-~~~~~~~~~~~~~~~~~
+Opening
+~~~~~~~
 
-Peptide sequences - :py:class:`.PeptideSequence` - are for chains of amino acid
-residues such as proteins.
+You can open a file...
+
+    >>> sequence = valerius.open("my_sequence.fasta")
+    >>> sequence
+    <DnaSequence (length: 163)>
+
+...or fetch them...
+
+    >>> sequence = valerius.fetch("P01308")
+    <PeptideSequence (length: 110)>

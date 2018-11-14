@@ -1,3 +1,5 @@
+"""Utility functions for reading in data."""
+
 import builtins
 import re
 import requests
@@ -22,9 +24,9 @@ def get_sequence_class(string):
     :param str string: the string sequence to inspect.
     :rtype: ``class``"""
 
-    if re.compile(r"^[GCAT]+$").match(string):
+    if re.compile(r"^[GCATgcat]+$").match(string):
         return DnaSequence
-    elif re.compile(r"^[GCAU]+$").match(string):
+    elif re.compile(r"^[GCAUgcau]+$").match(string):
         return RnaSequence
     else:
         return PeptideSequence
@@ -57,6 +59,7 @@ def fetch(accession, db="uniprot"):
     """Fetches a sequence from UNIPROT by accession code.
 
     :param str accession: the UNIPROT accession ID.
+    :param str db: an alternative database, such as NCBI.
     :rtype: ``Sequence``"""
 
     url = {
