@@ -17,7 +17,13 @@ class SequenceSetTests(TestCase):
 
 
     def test_sequence_sets_from_list(self):
-        pass
+        seq1 = "LPLLALLALWGPDPAAAFVNQHL"
+        seq2 = "LLALLALWGPDPAAASVNQHLLH"
+        seq3 = valerius.from_string("LPLLALLALLGPDPAFVN")
+        seq_set = valerius.SequenceSet(seq1, seq2, seq3)
+        self.assertEqual(seq_set.sequences, (seq1, seq2, seq3))
+        for sequence in seq_set:
+            self.assertEqual(sequence.type, "peptide")
 
 
 

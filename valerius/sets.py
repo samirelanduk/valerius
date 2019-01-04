@@ -1,9 +1,16 @@
 """Structures that contain multiple sequences."""
 
+from .utilities import from_string
+
 class SequenceSet:
-    """A collection of :py:class:`.Sequence` objects."""
+    """A collection of :py:class:`.Sequence` objects. You can pass in strings
+    instead if you wish, and these will be converted automatically.
+
+    :param \*sequences: The sequences to make up the set."""
 
     def __init__(self, *sequences):
+        sequences = [from_string(s) if isinstance(s, str)
+         else s for s in sequences]
         self._sequences = tuple(sequences)
 
 
