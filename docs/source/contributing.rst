@@ -1,4 +1,4 @@
-Contributing to docupy
+Contributing to valerius
 ======================
 
 Thank you for considering spending your time on improving this project!
@@ -10,7 +10,7 @@ Raising an Issue
 ----------------
 
 The `GitHub issue
-tracker <https://github.com/samirelanduk/docupy/issues>`__ is the place
+tracker <https://github.com/samirelanduk/valerius/issues>`__ is the place
 to either report a bug, or propose a new feature that you'd like to see
 added. There will be a style guide for the text of the issue when you
 open the tracker - just delete the feature request section if you are
@@ -26,13 +26,13 @@ around to it.
 How do Pull Requests work?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The first step is to fork the docupy repository to your own GitHub
+The first step is to fork the valerius repository to your own GitHub
 account. This will give you your own copy of the repository, where you
 can make changes that don't affect the original.
 
 The second step is to make your desired changes. To do this you need to
-clone your new copy of docupy to your local machine, and to do this
-you simply enter ``clone https://github.com/YOUR_USERNAME/docupy`` at
+clone your new copy of valerius to your local machine, and to do this
+you simply enter ``clone https://github.com/YOUR_USERNAME/valerius`` at
 your terminal, and you will have a local copy to work with.
 
 Make commits at sensible points while making your changes, with
@@ -55,12 +55,12 @@ and merge, close, or request changes.
 What does and doesn't make a good Pull Request?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-An ideal pull request for docupy is one that either adds a function (or
+An ideal pull request for valerius is one that either adds a function (or
 set of functions which carry out a single piece of functionality), or
 modifies the minimal amount of code to fix one bug. One pull request,
 one feature.
 
-If your pull request modifies large parts of docupy, changes the way the
+If your pull request modifies large parts of valerius, changes the way the
 core API works for the user, or adds an entirely new class, there's a
 good chance it won't be merged.
 
@@ -115,7 +115,7 @@ If in doubt, just look at the other functions.
 Tests
 ^^^^^
 
-If a function doesn't have tests, the function doesn't work. docupy has
+If a function doesn't have tests, the function doesn't work. valerius has
 integration tests and unit tests.
 
 Suppose the hypotenuse function above already exists, and you want to
@@ -212,5 +212,3 @@ Integration tests are run with:
 .. code::
 
     $ python -m unittest discover tests/integration
-
-
