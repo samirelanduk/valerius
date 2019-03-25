@@ -14,7 +14,21 @@ def open(path):
     :rtype: ``Sequence``"""
 
     with builtins.open(path) as f:
-        return from_string(f.read())
+        blocks = split_string(f.read())
+        sequences = [from_string(block) for block in blocks]
+        return sequences[0] if len(sequences) == 1 else sequences
+
+
+def split_string(string):
+    """Takes a raw string and splits it into individual raw sequences.
+
+    :param str string: the string to split.
+    :rtype: ``list``"""
+    
+    string = string.replace("\n>", "\n\n>")
+    while "\n\n\n" in string:
+        string = string.replace("\n\n\n", "\n\n")
+    return string.split("\n\n")
 
 
 def get_sequence_class(string):

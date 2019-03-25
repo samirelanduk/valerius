@@ -37,7 +37,7 @@ class SequenceTests(TestCase):
 
 class SequenceOpeningTests(TestCase):
 
-    def test_opening(self):
+    def test_opening_single_sequence(self):
         sequence = valerius.open("tests/integration/files/sequence-line.txt")
         self.assertEqual(
          sequence, "CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC"
@@ -54,3 +54,19 @@ class SequenceOpeningTests(TestCase):
         self.assertEqual(len(sequence), 98)
         self.assertEqual(sequence[:20], "MALWMRLLPLLALLALWGPD")
         self.assertEqual(sequence[-20:], "IVEQCCTSICSLYQLENYCN")
+
+
+    def test_opening_multiple_sequences(self):
+        sequences = valerius.open("tests/integration/files/sequences-lines.txt")
+        self.assertEqual(len(sequences), 2)
+        self.assertEqual(sequences[0][:20], "MGDVLEQFFILTGLLVCLAC")
+        self.assertEqual(sequences[0][-20:], "VVKMTQLILKHMESRQKGLI")
+        self.assertEqual(sequences[1][:20], "LNISSGIALFPWPLYSMYSA")
+        self.assertEqual(sequences[1][-20:], "IPAWAFYSGAFQRLLLTHYV")
+
+        sequences = valerius.open("tests/integration/files/anhydrase1.fasta")
+        self.assertEqual(len(sequences), 2)
+        self.assertEqual(sequences[0][:20], "MASPDWGYDDKNGPEQWSKL")
+        self.assertEqual(sequences[0][-20:], "MQHNNRPTQPLKGRTVRASF")
+        self.assertEqual(sequences[1][:20], "MAHSDWGYDSPNGPZEWVKL")
+        self.assertEqual(sequences[1][-20:], "IQHNNRPPQPLKGRTVRAFF")

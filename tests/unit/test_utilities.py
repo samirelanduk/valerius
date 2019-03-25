@@ -5,17 +5,58 @@ from valerius.utilities import *
 class FileOpeningTests(TestCase):
 
     @patch("builtins.open")
+    @patch("valerius.utilities.split_string")
     @patch("valerius.utilities.from_string")
-    def test_can_open_file(self, mock_seq, mock_open):
+    def test_can_open_file_with_one_sequence(self, mock_seq, mock_split, mock_open):
         open_return = MagicMock()
         mock_file = Mock()
         open_return.__enter__.return_value = mock_file
         mock_file.read.return_value = "ABCD\nEF GH\n\n123"
         mock_open.return_value = open_return
+        mock_split.return_value = [1]
         s = open("path/to/file")
         mock_open.assert_called_with("path/to/file")
-        mock_seq.assert_called_with("ABCD\nEF GH\n\n123")
+        mock_split.assert_called_with("ABCD\nEF GH\n\n123")
+        mock_seq.assert_called_with(1)
         self.assertIs(s, mock_seq.return_value)
+
+
+    @patch("builtins.open")
+    @patch("valerius.utilities.split_string")
+    @patch("valerius.utilities.from_string")
+    def test_can_open_file_with_many_sequences(self, mock_seq, mock_split, mock_open):
+        open_return = MagicMock()
+        mock_file = Mock()
+        open_return.__enter__.return_value = mock_file
+        mock_file.read.return_value = "ABCD\nEF GH\n\n123"
+        mock_open.return_value = open_return
+        mock_split.return_value = [1, 2, 3]
+        s = open("path/to/file")
+        mock_open.assert_called_with("path/to/file")
+        mock_split.assert_called_with("ABCD\nEF GH\n\n123")
+        mock_seq.assert_any_call(1)
+        mock_seq.assert_any_call(2)
+        mock_seq.assert_any_call(3)
+        self.assertEqual(s, [mock_seq.return_value] * 3)
+
+
+
+class StringSplittingTests(TestCase):
+
+    def test_can_do_nothing_to_string(self):
+        self.assertEqual(split_string("ABC"), ["ABC"])
+        self.assertEqual(split_string("ABC\nCDE"), ["ABC\nCDE"])
+
+
+    def test_can_split_on_line_breaks(self):
+        self.assertEqual(split_string("ABC\n\nCDE"), ["ABC", "CDE"])
+        self.assertEqual(split_string("ABC\n\n\nCDE"), ["ABC", "CDE"])
+        self.assertEqual(split_string("ABC\n\n\n\nCDE"), ["ABC", "CDE"])
+        self.assertEqual(split_string("ABC\n\n\n\n\nCDE"), ["ABC", "CDE"])
+
+
+    def test_can_split_on_fasta_indicator(self):
+        self.assertEqual(split_string("ABC\n>CDE"), ["ABC", ">CDE"])
 
 
 
