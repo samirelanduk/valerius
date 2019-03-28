@@ -24,7 +24,7 @@ def split_string(string):
 
     :param str string: the string to split.
     :rtype: ``list``"""
-    
+
     string = string.replace("\n>", "\n\n>")
     while "\n\n\n" in string:
         string = string.replace("\n\n\n", "\n\n")

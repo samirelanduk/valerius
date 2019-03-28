@@ -64,7 +64,7 @@ class SequenceOpeningTests(TestCase):
         self.assertEqual(sequences[1][:20], "LNISSGIALFPWPLYSMYSA")
         self.assertEqual(sequences[1][-20:], "IPAWAFYSGAFQRLLLTHYV")
 
-        sequences = valerius.open("tests/integration/files/anhydrase1.fasta")
+        sequences = valerius.open("tests/integration/files/anhydrase.fasta")
         self.assertEqual(len(sequences), 2)
         self.assertEqual(sequences[0][:20], "MASPDWGYDDKNGPEQWSKL")
         self.assertEqual(sequences[0][-20:], "MQHNNRPTQPLKGRTVRASF")

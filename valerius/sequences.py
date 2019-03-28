@@ -1,6 +1,7 @@
 """Classes for the various kinds of Biological sequence."""
 
 from collections import Counter
+from .sets import DotPlot
 
 class Sequence:
     """A string sequence of some kind.
@@ -104,6 +105,10 @@ class Sequence:
         :rtype: ``list``"""
 
         return [self._CODES.get(char, "XXX") for char in self._string]
+
+
+    def dot_matrix(self, other):
+        return DotPlot(self, other)
 
 
 

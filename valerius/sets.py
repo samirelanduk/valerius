@@ -1,33 +1,31 @@
 """Structures that contain multiple sequences."""
 
-from .utilities import from_string
+import matplotlib.pyplot as plt
 
-class SequenceSet:
-    """A collection of :py:class:`.Sequence` objects. You can pass in strings
-    instead if you wish, and these will be converted automatically.
+class DotPlot:
 
-    :param \*sequences: The sequences to make up the set."""
-
-    def __init__(self, *sequences):
-        sequences = [from_string(s) if isinstance(s, str)
-         else s for s in sequences]
-        self._sequences = tuple(sequences)
+    def __init__(self, sequence1, sequence2):
+        self._matrix = []
+        for char1 in sequence1._string:
+            row = []
+            for char2 in sequence2._string:
+                row.append(1 if char1 == char2 else 0)
+            self._matrix.append(row)
 
 
     def __repr__(self):
-        return "<SequenceSet ({} sequence{})>".format(
-         len(self._sequences), "" if len(self._sequences) == 1 else "s"
-        )
+        return f"<DotPlot ({len(self._matrix)} x {len(self._matrix[0])})>"
 
 
     def __getitem__(self, index):
-        return self._sequences[index]
+        return self._matrix[index]
 
 
     @property
-    def sequences(self):
-        """Returns the :py:class:`.Sequence` objects contained within.
+    def matrix(self):
+        return self._matrix
 
-        :rtype: ``tuple``"""
 
-        return self._sequences
+    def show(self):
+        plt.matshow(self._matrix)
+        plt.show()
