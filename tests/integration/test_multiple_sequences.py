@@ -10,4 +10,3 @@ class PairwiseAlignmentTests(TestCase):
         self.assertEqual(matrix[1][1], 1)
         self.assertEqual(matrix[2][2], 0)
         self.assertEqual(matrix[2][3], 1)
-        matrix.show()

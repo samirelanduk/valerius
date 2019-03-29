@@ -83,7 +83,7 @@ class StringToSequenceTests(TestCase):
         mock_is.return_value = False
         s = from_string("ABCD\nEF GH\n\n123")
         mock_is.assert_called_with("ABCD\nEF GH\n\n123")
-        mock_cls.return_value.assert_called_with("ABCDEFGH123")
+        mock_cls.return_value.assert_called_with("ABCDEFGH123", label="")
         self.assertIs(s, mock_cls.return_value.return_value)
 
 
@@ -93,7 +93,7 @@ class StringToSequenceTests(TestCase):
         mock_is.return_value = True
         s = from_string("ABCD\nEF GH\n\n123")
         mock_is.assert_called_with("ABCD\nEF GH\n\n123")
-        mock_cls.return_value.assert_called_with("EFGH123")
+        mock_cls.return_value.assert_called_with("EFGH123", label="BCD")
         self.assertIs(s, mock_cls.return_value.return_value)
 
 

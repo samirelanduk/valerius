@@ -53,11 +53,12 @@ def from_string(string):
     :param str string: the string to convert.
     :rtype: ``Sequence``"""
 
-    lines = string.splitlines()[1:] if is_fasta(string) else string.splitlines()
+    lines = string.splitlines()
+    label = lines.pop(0)[1:] if is_fasta(string) else ""
     string = " ".join([
      line for line in lines if line.strip()
     ]).replace(" ", "")
-    return get_sequence_class(string)(string)
+    return get_sequence_class(string)(string, label=label)
 
 
 def is_fasta(filestring):

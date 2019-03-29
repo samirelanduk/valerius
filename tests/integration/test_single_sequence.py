@@ -18,6 +18,7 @@ class SequenceTests(TestCase):
         self.assertEqual(sequence[-5:], "EFPXL")
         self.assertEqual(sequence.string, "MKXPEELKGIFEKYAAKEGDPNQLSKEELKLLLQTEFPXL")
         self.assertEqual(sequence.type, "unknown")
+        self.assertEqual(sequence.label, "")
         self.assertEqual(sequence.frequencies, {
          "E": 7, "L": 7, "K": 6, "P": 3, "X": 2, "G": 2, "F": 2, "A": 2,
          "Q": 2, "M": 1, "I": 1, "Y": 1, "D": 1, "N": 1, "S": 1, "T": 1
@@ -54,6 +55,10 @@ class SequenceOpeningTests(TestCase):
         self.assertEqual(len(sequence), 98)
         self.assertEqual(sequence[:20], "MALWMRLLPLLALLALWGPD")
         self.assertEqual(sequence[-20:], "IVEQCCTSICSLYQLENYCN")
+        self.assertEqual(
+         sequence.label,
+         "tr|A6XGL2|A6XGL2_HUMAN Insulin OS=Homo sapiens OX=9606 GN=INS PE=1 SV=1"
+        )
 
 
     def test_opening_multiple_sequences(self):
@@ -70,3 +75,11 @@ class SequenceOpeningTests(TestCase):
         self.assertEqual(sequences[0][-20:], "MQHNNRPTQPLKGRTVRASF")
         self.assertEqual(sequences[1][:20], "MAHSDWGYDSPNGPZEWVKL")
         self.assertEqual(sequences[1][-20:], "IQHNNRPPQPLKGRTVRAFF")
+        self.assertEqual(
+         sequences[0].label,
+         "sp|P00915|CAH1_HUMAN Carbonic anhydrase 1 OS=Homo sapiens OX=9606 GN=CA1 PE=1 SV=2"
+        )
+        self.assertEqual(
+         sequences[1].label,
+         "sp|P00917|CAH1_HORSE Carbonic anhydrase 1 OS=Equus caballus OX=9796 GN=CA1 PE=1 SV=3"
+        )

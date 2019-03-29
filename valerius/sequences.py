@@ -11,8 +11,9 @@ class Sequence:
     _CODES = {}
     _type = "unknown"
 
-    def __init__(self, string):
+    def __init__(self, string, label=""):
         self._string = string.upper()
+        self._label = label
 
 
     def __repr__(self):
@@ -86,6 +87,15 @@ class Sequence:
         :rtype: ``str``"""
 
         return self._string
+
+
+    @property
+    def label(self):
+        """The sequence's descriptive label.
+
+        :rtype: ``str``"""
+
+        return self._label
 
 
     @property
