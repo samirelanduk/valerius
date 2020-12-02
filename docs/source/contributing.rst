@@ -1,5 +1,5 @@
 Contributing to valerius
-======================
+========================
 
 Thank you for considering spending your time on improving this project!
 You can help by raising an issue to report a bug or suggest a new
